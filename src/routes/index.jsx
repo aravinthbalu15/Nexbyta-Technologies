@@ -91,8 +91,7 @@ function HomePage() {
 
       {/* Description */}
       <p className="mt-7 max-w-xl text-base leading-8 text-shell-muted sm:text-lg">
-        Practical technology education for ambitious learners, and thoughtful
-        digital products for businesses ready to move forward.
+        Delivering industry-focused technology education and innovative, scalable digital solutions that empower individuals, strengthen businesses, and drive sustainable growth.
       </p>
 
       {/* Buttons */}
@@ -179,7 +178,7 @@ function HomePage() {
       <StatsSection />
 
 
-      <Section tone="light" className="relative overflow-hidden">
+  <Section tone="light" className="relative overflow-hidden">
   {/* Background decoration */}
   <div
     className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
@@ -193,28 +192,28 @@ function HomePage() {
 
   <div className="relative grid items-center gap-14 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
 
-    {/* LEFT CONTENT */}
+    {/* ==================== LEFT CONTENT ==================== */}
     <div>
       {/* Eyebrow */}
       <div className="mb-5 flex items-center gap-3">
         <span className="h-px w-8 bg-primary" />
 
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">
-          A practical point of view
+          Our Approach
         </p>
       </div>
 
       {/* Heading */}
       <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-        Technology should create
-        <span className="text-primary"> momentum.</span>
+        Turning technology into
+        <span className="text-primary"> meaningful progress.</span>
       </h2>
 
       {/* Description */}
       <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-        Nexbyta brings learning and digital development together. We help
-        people build confidence through practice and help businesses turn
-        useful ideas into dependable software.
+        Nexbyta combines industry-focused technology education with innovative
+        digital solutions. We help individuals develop practical skills and
+        help businesses transform ideas into reliable, scalable technology.
       </p>
 
       {/* Features */}
@@ -249,7 +248,8 @@ function HomePage() {
           to="/about"
           className="group gap-2 px-6 shadow-sm transition-all duration-300 hover:shadow-lg"
         >
-          More about Nexbyta
+          Discover Nexbyta
+
           <ArrowRight
             className="size-4 transition-transform duration-300 group-hover:translate-x-1"
             aria-hidden="true"
@@ -262,7 +262,7 @@ function HomePage() {
       </div>
     </div>
 
-    {/* RIGHT VISUAL */}
+    {/* ==================== RIGHT VISUAL ==================== */}
     <div className="relative">
       {/* Main card */}
       <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-background p-6 shadow-xl sm:p-8">
@@ -274,119 +274,137 @@ function HomePage() {
         />
 
         <div className="relative">
-
           {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-semibold text-primary">
             <span className="size-1.5 rounded-full bg-primary" />
-            Built for learning & business
+            Technology for learning & business
           </div>
 
           {/* Visual heading */}
           <h3 className="mt-7 text-2xl font-bold tracking-tight sm:text-3xl">
-            Turning ideas into
-            <span className="text-primary"> real outcomes.</span>
+            From ideas to
+            <span className="text-primary"> real-world impact.</span>
           </h3>
 
+          {/* Visual description */}
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            Practical skills, modern technology and dependable digital
-            solutions — brought together under one ecosystem.
+            Practical education, modern technology, and scalable digital
+            solutions designed to create meaningful value for individuals
+            and businesses.
           </p>
 
-          {/* Stats / pillars */}
+          {/* ==================== PILLARS ==================== */}
           <div className="mt-8 grid grid-cols-2 gap-3">
-
-            <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 transition-transform duration-300 hover:-translate-y-1">
+            {/* Learn */}
+            <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm">
               <div className="text-2xl font-bold text-foreground">
                 Learn
               </div>
 
               <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                Practical programming & technical training
+                Industry-focused technology education
               </p>
             </div>
 
-            <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 transition-transform duration-300 hover:-translate-y-1">
+            {/* Build */}
+            <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm">
               <div className="text-2xl font-bold text-foreground">
                 Build
               </div>
 
               <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                Modern web & software development
+                Modern software and digital solutions
               </p>
             </div>
 
-            <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 transition-transform duration-300 hover:-translate-y-1">
+            {/* Grow */}
+            <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm">
               <div className="text-2xl font-bold text-foreground">
                 Grow
               </div>
 
               <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                Career-focused technology opportunities
+                Skills, careers, and professional opportunities
               </p>
             </div>
 
-            <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 transition-transform duration-300 hover:-translate-y-1">
+            {/* Scale */}
+            <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm">
               <div className="text-2xl font-bold text-foreground">
                 Scale
               </div>
 
               <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                Reliable solutions for growing businesses
+                Reliable technology for growing businesses
               </p>
             </div>
-
           </div>
 
-          {/* Bottom statement */}
+          {/* ==================== BOTTOM STATEMENT ==================== */}
           <div className="mt-7 flex items-center gap-3 rounded-2xl bg-primary/5 p-4">
             <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-              <ArrowRight className="size-5" aria-hidden="true" />
+              <ArrowRight
+                className="size-5"
+                aria-hidden="true"
+              />
             </div>
 
             <div>
               <p className="text-sm font-semibold text-foreground">
-                From knowledge to execution
+                From learning to real-world impact
               </p>
 
               <p className="mt-0.5 text-xs text-muted-foreground">
-                We focus on practical results, not just theory.
+                We turn knowledge into practical skills and ideas into
+                working solutions.
               </p>
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* Decorative floating card */}
+      {/* ==================== FLOATING CARD ==================== */}
       <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-border/60 bg-background/95 px-5 py-4 shadow-lg backdrop-blur sm:block">
         <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
           Nexbyta Technologies
         </p>
 
         <p className="mt-1 text-sm font-bold text-foreground">
-          Learn • Build • Grow
+          Technology • Education • Innovation
         </p>
       </div>
-
     </div>
   </div>
 </Section>
 
+
+        {/* Learning tracks */}
       <Section tone="soft">
-        <SectionHeading
-          eyebrow="Learning tracks"
-          title="Build the skills companies want to see"
-          subtitle="From beginner foundations to job-ready software practice, Nexbyta blends technical depth with real-world application."
-        />
-        <CourseRail courses={featuredCourses} images={courseImages} />
-        <Button to="/courses" variant="outline" className="mt-8">View all courses</Button>
-      </Section>
+  <SectionHeading
+    eyebrow="Learning Programs"
+    title="Build skills for the real world"
+    subtitle="Develop industry-relevant technical skills through structured learning, hands-on projects, and practical experience designed to prepare you for today's technology landscape."
+  />
+
+  <CourseRail
+    courses={featuredCourses}
+    images={courseImages}
+  />
+
+  <Button
+    to="/courses"
+    variant="outline"
+    className="mt-8"
+  >
+    Explore All Programs
+  </Button>
+</Section>
 
       <Section tone="light">
   <SectionHeading
-    eyebrow="Digital services"
+    eyebrow="Digital Services"
     title="Technology solutions designed to move your business forward"
-    subtitle="We help organizations build a credible digital presence and software systems that reduce friction and support growth."
+    subtitle="We help organizations build credible digital experiences and scalable software solutions that streamline operations, strengthen their digital presence, and support sustainable growth."
   />
 
   <div className="grid gap-6 lg:grid-cols-3">
@@ -417,7 +435,7 @@ function HomePage() {
               aria-hidden="true"
             />
 
-            {/* Number */}
+            {/* Service Number */}
             <div className="absolute right-4 top-4 flex size-10 items-center justify-center rounded-full border border-white/30 bg-black/30 text-sm font-bold text-white backdrop-blur-md">
               {String(index + 1).padStart(2, "0")}
             </div>
@@ -426,7 +444,7 @@ function HomePage() {
           {/* Content */}
           <div className="p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              Digital service
+              Digital Service
             </p>
 
             <h3 className="mt-2 text-xl font-semibold text-foreground">
@@ -455,8 +473,12 @@ function HomePage() {
     })}
   </div>
 
-  <Button to="/services" variant="outline" className="mt-8">
-    See all services
+  <Button
+    to="/services"
+    variant="outline"
+    className="mt-8"
+  >
+    Explore All Services
   </Button>
 </Section>
 

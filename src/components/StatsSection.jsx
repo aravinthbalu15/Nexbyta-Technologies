@@ -3,24 +3,24 @@ import { GraduationCap, FolderKanban, BriefcaseBusiness } from "lucide-react";
 
 const stats = [
   {
-    value: 500,
+    value: 100,
     suffix: "+",
-    label: "Students Trained",
-    description: "Learning through practical technology programs",
+    label: "Learners Trained",
+    description: "Developing practical, industry-relevant technology skills",
     icon: GraduationCap,
-  },
-  {
-    value: 50,
-    suffix: "+",
-    label: "Projects Completed",
-    description: "Real-world projects built with modern technologies",
-    icon: FolderKanban,
   },
   {
     value: 5,
     suffix: "+",
+    label: "Projects Delivered",
+    description: "Building practical digital solutions with modern technologies",
+    icon: FolderKanban,
+  },
+  {
+    value: 1,
+    suffix: "+",
     label: "Years of Experience",
-    description: "Delivering quality technology and education",
+    description: "Combining technology expertise with practical learning",
     icon: BriefcaseBusiness,
   },
 ];
@@ -132,22 +132,22 @@ export default function StatsSection() {
             }
           `}
         >
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            Nexbyta in numbers
-          </p>
+         <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
+  Nexbyta in Numbers
+</p>
 
-          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
-            Building skills.
-            <span className="text-gradient-brand">
-              {" "}
-              Building the future.
-            </span>
-          </h2>
+<h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+  Building skills.
+  <span className="text-gradient-brand">
+    {" "}
+    Building the future.
+  </span>
+</h2>
 
-          <p className="mt-4 text-sm leading-6 text-muted-foreground sm:text-base">
-            Empowering students and organizations through practical
-            technology, real-world projects, and industry-focused learning.
-          </p>
+<p className="mt-4 text-sm leading-6 text-muted-foreground sm:text-base">
+  Empowering individuals and organizations through practical technology,
+  real-world projects, and industry-focused learning.
+</p>
         </div>
 
         {/* Statistics */}
