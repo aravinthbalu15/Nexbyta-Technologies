@@ -236,13 +236,10 @@ export default function CourseRail({ courses = [], images = [] }) {
     : 0;
 
   return (
-    <div className="relative">
-      {/* ==================================================
-          CAROUSEL VIEWPORT
-      ================================================== */}
-
+    <div className="relative mx-auto w-full">
+      {/* Carousel viewport */}
       <div
-        className="relative overflow-hidden px-[calc((100%-min(80vw,20rem))/2)] sm:px-[calc((100%-min(31vw,20rem))/2)]"
+        className="relative overflow-hidden px-[calc((100%-min(78vw,18.5rem))/2)] sm:px-[calc((100%-min(31vw,18.5rem))/2)]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onPointerDown={handlePointerDown}
@@ -256,18 +253,15 @@ export default function CourseRail({ courses = [], images = [] }) {
         aria-label="Featured learning programs"
         tabIndex={0}
       >
-        {/* ==================================================
-            SLIDE TRACK
-        ================================================== */}
-
+        {/* Slide track */}
         <div
-          className={`flex gap-4 ${
+          className={`flex items-stretch gap-4 pb-3 ${
             animate
               ? "transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
               : ""
           }`}
           style={{
-            "--course-card-width": "min(80vw,20rem)",
+            "--course-card-width": "min(78vw,18.5rem)",
             transform: isInfinite
               ? `translateX(calc(-${slide} * (var(--course-card-width) + 1rem)))`
               : "translateX(0)",
@@ -279,40 +273,34 @@ export default function CourseRail({ courses = [], images = [] }) {
               : index;
 
             const image = images[originalIndex];
-
-            const isActive = isInfinite
-              ? index === slide
-              : index === 0;
+            const isActive = isInfinite ? index === slide : index === 0;
 
             return (
-              <div
+              <article
                 key={`${course.slug}-${index}`}
-                className={`group flex w-[min(80vw,20rem)] shrink-0 flex-col overflow-hidden rounded-2xl border bg-surface-light shadow-(--shadow-card) transition-all duration-300 sm:w-[min(31vw,20rem)] ${
+                className={`group relative flex w-[min(78vw,18.5rem)] shrink-0 flex-col overflow-hidden rounded-[1.4rem] border bg-white transition-all duration-300 sm:w-[min(31vw,18.5rem)] ${
                   isActive
-                    ? "scale-[1.04] border-primary/55 opacity-100 shadow-(--shadow-elevated)"
-                    : "scale-[0.96] border-border opacity-55"
+                    ? "z-10 scale-100 border-blue-200 shadow-[0_18px_48px_rgba(15,23,42,0.12)]"
+                    : "scale-[0.97] border-slate-200/90 shadow-[0_5px_20px_rgba(15,23,42,0.045)]"
                 }`}
               >
-                {/* ==================================================
-                    COURSE IMAGE
-                ================================================== */}
+                {/* Compact visual header */}
+                <div className="relative h-32 shrink-0 overflow-hidden bg-slate-950 sm:h-36">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(34,211,238,0.22),transparent_35%),linear-gradient(135deg,#0f172a,#102a43_60%,#082f49)]" />
+                  <div className="pointer-events-none absolute -right-8 -top-10 size-32 rounded-full border border-cyan-300/10" />
+                  <div className="pointer-events-none absolute -right-2 -top-4 size-20 rounded-full border border-cyan-300/10" />
 
-                <div className="relative aspect-video overflow-hidden bg-[radial-gradient(circle_at_80%_20%,rgba(8,145,178,0.25),transparent_35%),linear-gradient(145deg,#0b1830,#071426)]">
-                  {/* Fallback */}
-                  <div className="absolute inset-0 grid place-items-center p-6 text-center text-white/90">
-                    <div>
-                      <Icon
-                        name={course.icon}
-                        className="mx-auto size-8 text-cyan"
-                      />
-
-                      <p className="mt-3 text-sm font-semibold">
-                        {course.title}
-                      </p>
-                    </div>
+                  {/* Fallback stays visible if there is no image */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center px-4 pt-4 text-center text-white">
+                    <span className="grid size-12 place-items-center rounded-2xl border border-cyan-300/20 bg-white/[0.07] text-cyan-300 shadow-[0_8px_24px_rgba(0,0,0,0.14)]">
+                      <Icon name={course.icon} className="size-6" />
+                    </span>
+                    <p className="mt-2.5 max-w-full text-sm font-semibold tracking-wide">
+                      {course.title}
+                    </p>
                   </div>
 
-                  {/* Course Image */}
+                  {/* Image contained in a compact thumbnail */}
                   {image && (
                     <img
                       src={image}
@@ -322,48 +310,41 @@ export default function CourseRail({ courses = [], images = [] }) {
                       onError={(event) => {
                         event.currentTarget.style.display = "none";
                       }}
-                      className="relative size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      className="absolute inset-0 size-full object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   )}
 
-                  {/* Course Level */}
                   {course.level && (
-                    <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-shell/80 px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                    <span className="absolute left-3 top-3 rounded-full border border-white/15 bg-slate-950/65 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.12em] text-white/95 backdrop-blur-md">
                       {course.level}
                     </span>
                   )}
+
+                  <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent" />
                 </div>
 
-                {/* ==================================================
-                    COURSE CONTENT
-                ================================================== */}
+                {/* Course details */}
+                <div className="flex flex-1 flex-col p-4 sm:p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h3 className="text-base font-bold leading-snug tracking-tight text-slate-900 sm:text-lg">
+                        {course.title}
+                      </h3>
+                      <p className="mt-2 line-clamp-3 min-h-[4.25rem] text-sm leading-[1.55rem] text-slate-600">
+                        {course.shortDescription}
+                      </p>
+                    </div>
+                    <span className="grid size-9 shrink-0 place-items-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600 transition-colors duration-300 group-hover:border-cyan-200 group-hover:bg-cyan-50 group-hover:text-cyan-700">
+                      <Icon name={course.icon} className="size-[18px]" />
+                    </span>
+                  </div>
 
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  {/* Icon */}
-                  <span className="grid size-10 place-items-center rounded-xl bg-accent text-primary">
-                    <Icon
-                      name={course.icon}
-                      className="size-5"
-                    />
-                  </span>
-
-                  {/* Title */}
-                  <h3 className="mt-4 text-lg font-bold text-foreground">
-                    {course.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-                    {course.shortDescription}
-                  </p>
-
-                  {/* Tags */}
                   {course.tags?.length > 0 && (
-                    <ul className="mt-4 flex flex-wrap gap-2">
+                    <ul className="mt-4 flex min-h-7 flex-wrap gap-1.5">
                       {course.tags.slice(0, 4).map((tag) => (
                         <li
                           key={tag}
-                          className="rounded-md bg-surface-soft px-2 py-1 text-xs text-foreground"
+                          className="rounded-lg border border-slate-200/80 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-600"
                         >
                           {tag}
                         </li>
@@ -371,54 +352,41 @@ export default function CourseRail({ courses = [], images = [] }) {
                     </ul>
                   )}
 
-                  {/* ==================================================
-                      EXPLORE PROGRAM LINK
-                  ================================================== */}
-
-                  <Link
-                    to="/courses/$slug"
-                    params={{
-                      slug: course.slug,
-                    }}
-                    draggable="false"
-                    onClick={handleCourseClick}
-                    aria-label={`Explore ${course.title}`}
-                    className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-primary transition-colors hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
-                  >
-                    Explore Program
-
-                    <ArrowRight
-                      className="size-4 transition-transform duration-300 group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </Link>
+                  <div className="mt-auto pt-5">
+                    <Link
+                      to="/courses/$slug"
+                      params={{ slug: course.slug }}
+                      draggable="false"
+                      onClick={handleCourseClick}
+                      aria-label={`Explore ${course.title}`}
+                      className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 transition-colors hover:text-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                    >
+                      Explore Program
+                      <ArrowRight
+                        className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
       </div>
 
-      {/* ==================================================
-          CAROUSEL CONTROLS
-      ================================================== */}
-
+      {/* Carousel controls */}
       {isInfinite && (
-        <div className="mt-7 flex items-center justify-center gap-4">
-          {/* Previous */}
+        <div className="mt-5 flex items-center justify-center gap-4">
           <button
             type="button"
             onClick={() => move(-1)}
-            className="grid size-11 place-items-center rounded-full border border-border bg-surface-light text-foreground shadow-sm transition-all duration-200 hover:border-primary hover:text-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 active:scale-95"
+            className="grid size-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all duration-200 hover:border-blue-300 hover:text-blue-600 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 active:scale-95"
             aria-label="Previous course"
           >
-            <ChevronLeft
-              className="size-5"
-              aria-hidden="true"
-            />
+            <ChevronLeft className="size-5" aria-hidden="true" />
           </button>
 
-          {/* Pagination */}
           <div
             className="flex items-center gap-1.5"
             role="tablist"
@@ -435,12 +403,9 @@ export default function CourseRail({ courses = [], images = [] }) {
                   aria-selected={active}
                   aria-label={`Go to ${course.title}`}
                   onClick={() => {
-                    if (isMoving.current) {
-                      return;
-                    }
+                    if (isMoving.current) return;
 
                     isMoving.current = true;
-
                     setAnimate(true);
                     setSlide(index + 1);
 
@@ -448,27 +413,23 @@ export default function CourseRail({ courses = [], images = [] }) {
                       isMoving.current = false;
                     }, TRANSITION_DURATION);
                   }}
-                  className={`h-1.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
+                  className={`h-1.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 ${
                     active
-                      ? "w-7 bg-primary"
-                      : "w-1.5 bg-border hover:bg-primary/50"
+                      ? "w-7 bg-blue-600"
+                      : "w-1.5 bg-slate-300 hover:bg-blue-400"
                   }`}
                 />
               );
             })}
           </div>
 
-          {/* Next */}
           <button
             type="button"
             onClick={() => move(1)}
-            className="grid size-11 place-items-center rounded-full border border-border bg-surface-light text-foreground shadow-sm transition-all duration-200 hover:border-primary hover:text-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 active:scale-95"
+            className="grid size-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all duration-200 hover:border-blue-300 hover:text-blue-600 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 active:scale-95"
             aria-label="Next course"
           >
-            <ChevronRight
-              className="size-5"
-              aria-hidden="true"
-            />
+            <ChevronRight className="size-5" aria-hidden="true" />
           </button>
         </div>
       )}

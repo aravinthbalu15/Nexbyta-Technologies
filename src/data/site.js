@@ -17,6 +17,7 @@ export const navLinks = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
   { label: "Courses", to: "/courses" },
+  { label: "Internships", to: "/internships" },
   { label: "Services", to: "/services" },
   { label: "Contact", to: "/contact" },
 ];

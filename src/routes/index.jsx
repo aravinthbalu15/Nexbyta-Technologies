@@ -11,6 +11,7 @@ import { Section, SectionHeading } from "../components/Section";
 import { company, courses, services, trustPoints, whyNexbyta, learningProcess, deliveredWork } from "../data/site";
 import { siteImages } from "../data/siteImages";
 import StatsSection from "../components/StatsSection";
+import Home from "@/components/Home";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,132 +51,12 @@ function HomePage() {
 
   return (
     <>
-<section className="relative overflow-hidden bg-shell px-5 py-14 text-shell-foreground sm:px-8 sm:py-20 lg:py-20">
-  {/* Background */}
-  <div
-    className="surface-grid pointer-events-none absolute inset-0 opacity-[0.07]"
-    aria-hidden="true"
-  />
+    <Home />
 
-  <div
-    className="pointer-events-none absolute -left-40 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-cyan/10 blur-[120px]"
-    aria-hidden="true"
-  />
-
-  <div
-    className="pointer-events-none absolute -right-40 top-1/3 h-96 w-96 rounded-full bg-cyan/5 blur-[120px]"
-    aria-hidden="true"
-  />
-
-  <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
-
-    {/* CONTENT */}
-    <div className="animate-rise">
-
-      {/* Small label */}
-      <div className="mb-6 flex items-center gap-3">
-        <span className="h-px w-10 bg-cyan" />
-
-        <span className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan">
-          Nexbyta Technologies
-        </span>
-      </div>
-
-      {/* Heading */}
-      <h1 className="max-w-2xl text-4xl font-black leading-[1.05] tracking-[-0.035em] sm:text-5xl lg:text-[4.5rem]">
-        Building the Next Byte of{" "}
-        <span className="text-cyan">
-          Technology
-        </span>
-      </h1>
-
-      {/* Description */}
-      <p className="mt-7 max-w-xl text-base leading-8 text-shell-muted sm:text-lg">
-        Delivering industry-focused technology education and innovative, scalable digital solutions that empower individuals, strengthen businesses, and drive sustainable growth.
-      </p>
-
-      {/* Buttons */}
-      <div className="mt-9 flex flex-wrap gap-3">
-        <Button
-          to="/courses"
-          variant="accent"
-          className="group gap-2 rounded-lg px-6 py-3"
-        >
-          Explore Courses
-
-          <ArrowRight
-            className="size-4 transition-transform duration-300 group-hover:translate-x-1"
-            aria-hidden="true"
-          />
-        </Button>
-
-        <Button
-          to="/enquiry"
-          variant="light"
-          className="rounded-lg px-6 py-3"
-        >
-          Start a Conversation
-        </Button>
-      </div>
-
-      {/* Trust points */}
-      <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3">
-        {trustPoints.slice(0, 3).map((point) => (
-          <div
-            key={point}
-            className="flex items-center gap-2 text-sm text-shell-muted"
-          >
-            <BadgeCheck
-              className="size-4 text-cyan"
-              aria-hidden="true"
-            />
-
-            <span>{point}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    {/* IMAGE */}
-    <div className="relative animate-rise [animation-delay:120ms]">
-
-      {/* Very subtle glow */}
-      <div
-        className="pointer-events-none absolute inset-8 rounded-[2rem] bg-cyan/10 blur-3xl"
-        aria-hidden="true"
-      />
-
-      {/* Image frame */}
-      <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.02] p-1.5">
-
-        <MediaPlaceholder
-          src={siteImages.hero}
-          alt="Nexbyta team collaborating on technology training and digital products"
-          loading="eager"
-          className="aspect-[4/3] w-full rounded-[1.5rem] object-cover"
-        />
-
-        {/* Image overlay */}
-        <div
-          className="pointer-events-none absolute inset-x-1.5 bottom-1.5 h-32 rounded-b-[1.5rem] bg-gradient-to-t from-black/40 to-transparent"
-          aria-hidden="true"
-        />
-      </div>
-
-     
-    </div>
-
-  </div>
-</section>
-
-      <section className="border-b border-border bg-surface-soft px-5 py-8 sm:px-8">
-        <div className="mx-auto grid w-full max-w-6xl gap-5 sm:grid-cols-3">
-          {[{ label: "Learn by building", icon: GraduationCap }, { label: "Work with modern tools", icon: Code2 }, { label: "Prepare for real opportunities", icon: Rocket }].map(({ label, icon: Icon }) => <div key={label} className="flex items-center gap-3 text-sm font-semibold text-ink"><Icon className="size-5 text-primary" aria-hidden="true" />{label}</div>)}
-        </div>
-      </section>
-
-       {/* Statistics */}
-      <StatsSection />
+      {/* Statistics */}
+<div className="animate-in fade-in slide-in-from-bottom-6 zoom-in-[0.98] duration-1000 ease-out">
+  <StatsSection />
+</div>
 
 
   <Section tone="light" className="relative overflow-hidden">
@@ -399,6 +280,11 @@ function HomePage() {
     Explore All Programs
   </Button>
 </Section>
+
+
+
+
+
 
       <Section tone="light">
   <SectionHeading

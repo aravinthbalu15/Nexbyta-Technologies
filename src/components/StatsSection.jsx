@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { GraduationCap, FolderKanban, BriefcaseBusiness } from "lucide-react";
+import {
+  GraduationCap,
+  FolderKanban,
+  BriefcaseBusiness,
+  Sparkles,
+} from "lucide-react";
 
 const stats = [
   {
@@ -25,40 +30,47 @@ const stats = [
   },
 ];
 
-function AnimatedNumber({ value, suffix, start }) {
+function AnimatedNumber({ value, suffix, start, delay = 0 }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start) {
+      setCount(0);
+      return undefined;
+    }
 
+    let frameId;
     let startTime = null;
-    const duration = 1800;
+    let delayTimer;
+    const duration = 1600;
 
     const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp;
+      if (startTime === null) startTime = timestamp;
 
-      const progress = Math.min(
-        (timestamp - startTime) / duration,
-        1
-      );
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
 
-      // Smooth ease-out
-      const easedProgress = 1 - Math.pow(1 - progress, 4);
-
-      setCount(Math.floor(easedProgress * value));
+      setCount(Math.floor(eased * value));
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        frameId = requestAnimationFrame(animate);
       } else {
         setCount(value);
       }
     };
 
-    requestAnimationFrame(animate);
-  }, [start, value]);
+    delayTimer = window.setTimeout(() => {
+      frameId = requestAnimationFrame(animate);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(delayTimer);
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, [start, value, delay]);
 
   return (
-    <span>
+    <span className="tabular-nums">
       {count}
       {suffix}
     </span>
@@ -71,8 +83,7 @@ export default function StatsSection() {
 
   useEffect(() => {
     const element = sectionRef.current;
-
-    if (!element) return;
+    if (!element) return undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -81,253 +92,123 @@ export default function StatsSection() {
           observer.disconnect();
         }
       },
-      {
-        threshold: 0.25,
-      }
+      { threshold: 0.2, rootMargin: "0px 0px -40px 0px" }
     );
 
     observer.observe(element);
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-background px-5 py-14 sm:px-8 sm:py-16 lg:py-20"
+      className="relative isolate overflow-hidden bg-background px-5 py-14 sm:px-8 sm:py-16 lg:py-20"
     >
-      {/* Background glow */}
+      {/* Soft background atmosphere */}
       <div
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-0
-          h-72
-          w-[min(900px,100%)]
-          -translate-x-1/2
-          rounded-full
-          bg-primary/[0.05]
-          blur-3xl
-        "
         aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-72 w-[min(900px,100%)] -translate-x-1/2 rounded-full bg-primary/[0.06] blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-24 left-[10%] -z-10 size-64 rounded-full bg-cyan-400/[0.05] blur-3xl"
       />
 
       <div className="relative mx-auto w-full max-w-6xl">
         {/* Heading */}
         <div
-          className={`
-            mx-auto
-            mb-10
-            max-w-2xl
-            text-center
-            transition-all
-            duration-1000
-            ease-[cubic-bezier(0.22,1,0.36,1)]
-            sm:mb-12
-            ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-6 opacity-0"
-            }
-          `}
+          className={`mx-auto mb-10 max-w-2xl text-center transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-12 ${
+            isVisible
+              ? "translate-y-0 scale-100 opacity-100"
+              : "translate-y-7 scale-[0.98] opacity-0"
+          }`}
         >
-         <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-  Nexbyta in Numbers
-</p>
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/[0.06] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            <Sparkles size={14} aria-hidden="true" />
+            Nexbyta in Numbers
+          </div>
 
-<h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
-  Building skills.
-  <span className="text-gradient-brand">
-    {" "}
-    Building the future.
-  </span>
-</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+            Building skills.
+            <span className="text-gradient-brand"> Building the future.</span>
+          </h2>
 
-<p className="mt-4 text-sm leading-6 text-muted-foreground sm:text-base">
-  Empowering individuals and organizations through practical technology,
-  real-world projects, and industry-focused learning.
-</p>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+            Empowering individuals and organizations through practical technology,
+            real-world projects, and industry-focused learning.
+          </p>
         </div>
 
-        {/* Statistics */}
+        {/* Statistics cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-6">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
 
             return (
-              <div
+              <article
                 key={stat.label}
-                className={`
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-2xl
-                  border
-                  border-border
-                  bg-card
-                  p-6
-                  shadow-[var(--shadow-card)]
-                  transition-all
-                  duration-700
-                  ease-[cubic-bezier(0.22,1,0.36,1)]
-                  hover:-translate-y-1.5
-                  hover:border-primary/25
-                  hover:shadow-[var(--shadow-elevated)]
-                  sm:p-7
-                  lg:p-8
-                  ${
-                    isVisible
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-10 opacity-0"
-                  }
-                `}
-                style={{
-                  transitionDelay: `${index * 120}ms`,
-                }}
+                className={`group relative flex min-h-[300px] flex-col items-center overflow-hidden rounded-2xl border border-border bg-card px-6 py-8 text-center shadow-[var(--shadow-card)] transition-[transform,opacity,border-color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-primary/30 hover:shadow-[var(--shadow-elevated)] motion-reduce:transform-none motion-reduce:transition-none sm:px-5 sm:py-8 lg:px-8 lg:py-9 ${
+                  isVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-10 opacity-0"
+                }`}
+                style={{ transitionDelay: `${isVisible ? index * 150 : 0}ms` }}
               >
                 {/* Hover gradient */}
                 <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    inset-0
-                    bg-gradient-to-br
-                    from-primary/[0.07]
-                    via-transparent
-                    to-cyan/[0.06]
-                    opacity-0
-                    transition-opacity
-                    duration-700
-                    group-hover:opacity-100
-                  "
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/[0.08] via-transparent to-cyan-400/[0.07] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
                 />
-
                 {/* Decorative glow */}
                 <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    -right-12
-                    -top-12
-                    size-32
-                    rounded-full
-                    bg-primary/10
-                    opacity-0
-                    blur-3xl
-                    transition-opacity
-                    duration-700
-                    group-hover:opacity-100
-                  "
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-12 -top-12 size-36 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-16 -left-12 size-36 rounded-full bg-cyan-400/10 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100"
                 />
 
-                <div className="relative z-10">
+                <div className="relative z-10 flex w-full flex-col items-center">
                   {/* Icon */}
-                  <div
-                    className="
-                      mb-6
-                      flex
-                      size-11
-                      items-center
-                      justify-center
-                      rounded-xl
-                      border
-                      border-primary/10
-                      bg-primary/[0.07]
-                      text-primary
-                      transition-all
-                      duration-500
-                      group-hover:scale-105
-                      group-hover:border-primary/20
-                      group-hover:bg-primary/10
-                    "
-                  >
+                  <div className="mb-6 grid size-12 place-items-center rounded-2xl border border-primary/15 bg-primary/[0.07] text-primary shadow-sm transition-all duration-500 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:border-primary/30 group-hover:bg-primary/10 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] motion-reduce:transform-none">
                     <Icon
-                      className="size-5"
+                      className="size-5 transition-transform duration-500 group-hover:scale-110"
                       strokeWidth={1.8}
                       aria-hidden="true"
                     />
                   </div>
 
-                  {/* Number */}
-                  <div
-                    className="
-                      text-4xl
-                      font-bold
-                      leading-none
-                      tracking-[-0.04em]
-                      text-foreground
-                      sm:text-5xl
-                    "
-                  >
-                    <AnimatedNumber
-                      value={stat.value}
-                      suffix={stat.suffix}
-                      start={isVisible}
-                    />
+                  {/* Centered animated number */}
+                  <div className="flex min-h-[58px] items-center justify-center text-4xl font-extrabold leading-none tracking-[-0.045em] text-foreground sm:text-5xl">
+                    <span className="bg-gradient-to-r from-foreground via-primary to-cyan-500 bg-clip-text text-transparent">
+                      <AnimatedNumber
+                        value={stat.value}
+                        suffix={stat.suffix}
+                        start={isVisible}
+                        delay={index * 180}
+                      />
+                    </span>
                   </div>
 
-                  {/* Accent line */}
-                  <div
-                    className="
-                      my-5
-                      h-px
-                      w-12
-                      bg-primary/30
-                      transition-all
-                      duration-500
-                      group-hover:w-20
-                      group-hover:bg-primary/60
-                    "
-                  />
+                  {/* Animated accent line */}
+                  <div className="my-5 h-px w-12 origin-center bg-gradient-to-r from-primary/40 via-primary to-cyan-400/40 transition-all duration-500 group-hover:w-20 group-hover:shadow-[0_0_12px_rgba(59,130,246,0.3)]" />
 
-                  {/* Label */}
-                  <h3
-                    className="
-                      text-sm
-                      font-bold
-                      uppercase
-                      tracking-[0.1em]
-                      text-foreground
-                    "
-                  >
+                  <h3 className="text-sm font-bold uppercase tracking-[0.1em] text-foreground transition-colors duration-300 group-hover:text-primary">
                     {stat.label}
                   </h3>
 
-                  {/* Description */}
-                  <p
-                    className="
-                      mt-2
-                      max-w-xs
-                      text-sm
-                      leading-5
-                      text-muted-foreground
-                    "
-                  >
+                  <p className="mx-auto mt-2 max-w-xs text-sm leading-6 text-muted-foreground">
                     {stat.description}
                   </p>
                 </div>
 
-                {/* Bottom accent */}
+                {/* Bottom animated accent */}
                 <div
-                  className="
-                    absolute
-                    inset-x-6
-                    bottom-0
-                    h-px
-                    origin-left
-                    scale-x-0
-                    bg-gradient-to-r
-                    from-primary
-                    to-cyan
-                    transition-transform
-                    duration-700
-                    group-hover:scale-x-100
-                    sm:inset-x-7
-                    lg:inset-x-8
-                  "
+                  aria-hidden="true"
+                  className="absolute inset-x-6 bottom-0 h-[2px] origin-center scale-x-0 bg-gradient-to-r from-primary via-cyan-400 to-primary transition-transform duration-700 ease-out group-hover:scale-x-100 sm:inset-x-7 lg:inset-x-8"
                 />
-              </div>
+              </article>
             );
           })}
         </div>
