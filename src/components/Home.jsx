@@ -6,162 +6,306 @@ import {
   GraduationCap,
   Code2,
   Users,
-  Globe2,
-  Sparkles,
-  Layers3,
-  Terminal,
+  MessageCircle,
 } from "lucide-react";
 
 const technologies = [
-  { name: "Java", detail: "Backend Development", symbol: "☕", position: "left-0 top-[27%] md:top-[24%]" },
-  { name: "Python", detail: "Programming & AI", symbol: "Py", position: "left-[25%] top-[8%] md:left-[28%] md:top-[11%]" },
-  { name: "Web Development", detail: "Modern Web Experiences", symbol: "◎", position: "right-0 top-[6%] md:top-[7%]" },
-  { name: "C / C++", detail: "Core Programming", symbol: "C", position: "right-0 top-[39%] md:top-[34%]" },
-  { name: "Projects", detail: "Build Real Products", symbol: "⌘", position: "right-0 bottom-[18%] md:bottom-[23%]" },
-  { name: "Internships", detail: "Career Experience", symbol: "↗", position: "left-0 bottom-[11%] md:left-[7%] md:bottom-[15%]" },
+  {
+    name: "Python",
+    detail: "Programming & AI",
+    symbol: "Py",
+    className: "left-[14%] top-[12%]",
+  },
+  {
+    name: "Web Development",
+    detail: "Modern web experiences",
+    symbol: "</>",
+    className: "right-[3%] top-[14%]",
+  },
+  {
+    name: "Java",
+    detail: "Backend development",
+    symbol: "J",
+    className: "left-[4%] top-[40%]",
+  },
+  {
+    name: "C / C++",
+    detail: "Core programming",
+    symbol: "C",
+    className: "right-[0%] top-[56%]",
+  },
+  {
+    name: "Internships",
+    detail: "Practical experience",
+    symbol: "↗",
+    className: "left-[17%] bottom-[6%]",
+  },
 ];
 
 const benefits = [
-  { Icon: GraduationCap, title: "Industry Focused", second: "Learning" },
+  { Icon: GraduationCap, title: "Industry-focused", second: "Learning" },
   { Icon: Code2, title: "Hands-on", second: "Projects" },
   { Icon: Users, title: "Career", second: "Preparation" },
 ];
 
-const nodes = [
-  [18, 30], [31, 18], [43, 34], [58, 17], [72, 29], [84, 42],
-  [28, 57], [46, 66], [65, 53], [77, 72],
-];
 
 export default function Home() {
   const [activeCard, setActiveCard] = useState("");
 
   return (
-    <main className="w-full overflow-hidden bg-[#030817] font-sans text-white">
-      <section className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_72%_42%,rgba(0,100,255,.2),transparent_42%),radial-gradient(ellipse_at_100%_100%,rgba(0,216,255,.09),transparent_38%),#030817] px-5 py-10 sm:px-8 sm:py-14 lg:px-[4.2%] lg:py-12">
-        {/* Futuristic grid and ambient light */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(42,119,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(42,119,255,.07)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_70%,transparent_100%)]" />
-        <div aria-hidden="true" className="pointer-events-none absolute -left-20 top-10 -z-10 h-72 w-72 rounded-full bg-blue-600/20 blur-[100px] animate-pulse" />
-        <div aria-hidden="true" className="pointer-events-none absolute -bottom-28 right-0 -z-10 h-80 w-80 rounded-full bg-cyan-500/15 blur-[110px] animate-pulse" />
+    <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] font-sans text-white">
+      <style>{`
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) rotateX(16deg) rotateY(-22deg) rotateZ(3deg); }
+          50% { transform: translateY(-10px) rotateX(18deg) rotateY(-20deg) rotateZ(4deg); }
+        }
+        @keyframes float-badge {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
+        }
+        @keyframes orbit-pulse {
+          0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); }
+          50% { opacity: 0.65; transform: translate(-50%, -50%) scale(1.02); }
+        }
+        .animate-ide {
+          animation: float-slow 6s ease-in-out infinite;
+        }
+        .animate-badge-slow {
+          animation: float-badge 4s ease-in-out infinite;
+        }
+        .nx-grid {
+          background-image: 
+            linear-gradient(to right, rgba(28, 57, 110, 0.12) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(28, 57, 110, 0.12) 1px, transparent 1px);
+          background-size: 48px 48px;
+        }
+      `}</style>
 
-        <div className="mx-auto grid min-h-[560px] w-full max-w-[1600px] grid-cols-1 items-center gap-5 lg:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)] lg:gap-4">
-          {/* Hero copy */}
-          <div className="relative z-30 mx-auto w-full max-w-[640px] animate-[pulse_1s_ease-out_1] lg:mx-0">
-            <div className="mb-5 inline-flex flex-wrap items-center gap-2.5 rounded-full border border-cyan-300/25 bg-cyan-400/[0.06] px-3.5 py-2 text-[9px] font-extrabold tracking-[.16em] text-cyan-300 shadow-[inset_0_0_15px_rgba(0,190,255,.04)] backdrop-blur-xl sm:text-[10px]">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_12px_#00dfff] animate-pulse" />
-              <span>LEARN</span><i className="not-italic text-cyan-400">•</i>
-              <span>BUILD</span><i className="not-italic text-cyan-400">•</i>
-              <span>GROW</span><i className="not-italic text-cyan-400">•</i>
-              <span>SUCCEED</span>
+      {/* Grid Pattern & Radiant Glows */}
+      <div className="nx-grid pointer-events-none absolute inset-0 z-0 opacity-70" />
+      <div className="pointer-events-none absolute right-[15%] top-[15%] z-0 h-[650px] w-[650px] rounded-full bg-[radial-gradient(circle,rgba(24,84,240,0.22)_0%,rgba(6,182,212,0.12)_35%,transparent_70%)] blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 top-0 z-0 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[130px]" />
+
+    
+
+      {/* ================= HERO CONTENT ================= */}
+      <section className="relative z-10 mx-auto max-w-[1550px] px-6 pb-20 pt-8 lg:px-14">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.25fr]">
+          {/* Left Column: Hero Details */}
+          <div className="max-w-[560px]">
+            {/* Tag */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-[#071b35]/60 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+              LEARN <span className="text-cyan-600">/</span> BUILD{" "}
+              <span className="text-cyan-600">/</span> GROW
             </div>
 
-            <h1 className="m-0 text-[clamp(2.65rem,7vw,4.7rem)] font-black leading-[.99] tracking-[-.055em] text-slate-50 [text-wrap:balance] sm:text-[clamp(3.1rem,6vw,4.7rem)] lg:text-[clamp(2.8rem,4.45vw,4.7rem)]">
-              Building the<br />Next Byte of<br />
-              <span className="inline-block bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text pb-1 text-transparent drop-shadow-[0_0_20px_rgba(0,173,255,.16)]">Technology</span>
+            {/* Heading */}
+            <h1 className="mt-7 text-[clamp(2.6rem,5vw,4.8rem)] font-extrabold leading-[1.02] tracking-tight text-white">
+              Building the
+              <br />
+              next byte of
+              <br />
+              <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
+                technology.
+              </span>
             </h1>
 
-            <p className="mt-5 max-w-[540px] text-sm font-normal leading-7 text-slate-300 sm:text-base sm:leading-8">
-              Industry-focused training, real-world projects and innovative digital solutions to empower students and businesses for a brighter future.
+            {/* Description */}
+            <p className="mt-6 text-sm leading-relaxed text-slate-300 sm:text-base">
+              Industry-focused training, practical projects, and innovative digital
+              solutions that empower learners and help businesses move forward.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/courses" className="group relative inline-flex min-h-12 items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-3 text-sm font-bold text-white shadow-[0_8px_25px_rgba(0,105,255,.28)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_10px_34px_rgba(0,143,255,.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
-                <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                <span className="relative">Explore Courses</span><ArrowRight size={19} className="relative transition-transform duration-300 group-hover:translate-x-1" />
+            {/* CTAs */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                to="/courses"
+                className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3.5 text-xs font-bold text-white shadow-[0_10px_25px_rgba(37,99,235,0.35)] transition-all hover:scale-105 hover:shadow-[0_12px_30px_rgba(37,99,235,0.5)]"
+              >
+                <span>Explore Courses</span>
+                <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/enquiry" className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full border border-slate-300/30 bg-white/[0.035] px-5 py-3 text-sm font-semibold text-white backdrop-blur-lg transition duration-300 hover:-translate-y-1 hover:border-cyan-300/70 hover:bg-cyan-400/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
-                <span className="grid h-6 w-6 place-items-center"><Play size={14} fill="currentColor" /></span>
-                Start a Conversation
+
+              <Link
+                to="/enquiry"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-[#071329]/90 px-6 py-3.5 text-xs font-semibold text-white backdrop-blur-md transition hover:border-cyan-400/40 hover:bg-[#0c1e3d]"
+              >
+                <Play className="h-3.5 w-3.5 fill-current text-white" />
+                <span>Start a Conversation</span>
               </Link>
             </div>
 
-            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-4 sm:gap-x-6">
+            {/* Value Cards Row */}
+            <div className="mt-12 grid grid-cols-3 gap-3.5">
               {benefits.map(({ Icon, title, second }) => (
-                <div className="flex items-center gap-2.5 text-xs leading-5 text-slate-300" key={title}>
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-cyan-400/20 bg-gradient-to-br from-sky-400/20 to-blue-700/10 text-cyan-300 shadow-[inset_0_0_15px_rgba(0,195,255,.06)]">
-                    <Icon size={21} strokeWidth={2.2} />
+                <div
+                  key={title}
+                  className="flex items-center gap-3 rounded-2xl border border-white/5 bg-[#091426]/70 p-3 shadow-lg backdrop-blur-md"
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
+                    <Icon className="h-4 w-4" />
                   </div>
-                  <div className="flex flex-col"><span>{title}</span><span>{second}</span></div>
+                  <div className="text-[11px] leading-tight text-slate-300">
+                    <p className="font-semibold text-white">{title}</p>
+                    <p className="text-[10px] text-slate-400">{second}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* CSS/SVG 3D scene */}
-          <div className="relative mx-auto min-h-[390px] w-full max-w-[700px] [perspective:1100px] sm:min-h-[490px] lg:min-h-[590px]">
-            <div className="absolute left-1/2 top-[38%] -z-10 aspect-square w-[75%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/20 blur-[75px]" />
+          {/* Right Column: 3D Holographic Orbit Stage */}
+          <div className="relative mx-auto flex h-[580px] w-full max-w-[720px] items-center justify-center">
+            {/* Elliptical Orbital Rings */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-500/20 shadow-[0_0_60px_rgba(37,99,235,0.12)]" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-400/15 [border-dasharray:6px]" />
 
-            {/* Region labels */}
-            <div className="absolute left-[5%] top-[2%] z-[2] rounded border border-blue-400/25 bg-[#041533]/75 px-2 py-1.5 text-[7px] font-semibold tracking-wide text-blue-300 backdrop-blur-md sm:text-[9px]">NORTH AMERICA</div>
-            <div className="absolute left-[39%] top-[7%] z-[2] rounded border border-blue-400/25 bg-[#041533]/75 px-2 py-1.5 text-[7px] font-semibold tracking-wide text-blue-300 backdrop-blur-md sm:text-[9px]">EUROPE</div>
-            <div className="absolute right-[4%] top-[2%] z-[2] rounded border border-blue-400/25 bg-[#041533]/75 px-2 py-1.5 text-[7px] font-semibold tracking-wide text-blue-300 backdrop-blur-md sm:text-[9px]">ASIA</div>
-            <div className="absolute left-0 top-[52%] z-[2] rounded border border-blue-400/25 bg-[#041533]/75 px-2 py-1.5 text-[7px] font-semibold tracking-wide text-blue-300 backdrop-blur-md sm:text-[9px]">SOUTH AMERICA</div>
-            <div className="absolute right-0 top-[61%] z-[2] rounded border border-blue-400/25 bg-[#041533]/75 px-2 py-1.5 text-[7px] font-semibold tracking-wide text-blue-300 backdrop-blur-md sm:text-[9px]">AUSTRALIA</div>
-            <div className="absolute right-0 top-[19%] z-[2] hidden rounded border border-blue-400/25 bg-[#041533]/75 px-2 py-1.5 text-[9px] font-semibold leading-4 tracking-wide text-blue-300 backdrop-blur-md sm:block">GLOBAL<br />OPPORTUNITIES</div>
+            {/* Floating Orbit Dots */}
+            <span className="absolute left-[28%] top-[12%] h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#22d3ee]" />
+            <span className="absolute bottom-[20%] right-[32%] h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_12px_#38bdf8]" />
+            <span className="absolute right-[22%] top-[30%] h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa]" />
 
-            {/* Globe */}
-            <div className="absolute left-1/2 top-[5%] aspect-square w-[66%] max-w-[430px] -translate-x-1/2 overflow-hidden rounded-full border border-sky-300/80 bg-[radial-gradient(ellipse_at_32%_24%,rgba(75,219,255,.24),transparent_34%),radial-gradient(ellipse_at_65%_72%,rgba(0,61,235,.52),transparent_58%),radial-gradient(circle_at_48%_44%,#07306d_0%,#041a4a_62%,#020b26_100%)] shadow-[inset_-30px_-20px_65px_rgba(0,17,90,.65),inset_12px_8px_34px_rgba(0,222,255,.17),0_0_35px_rgba(0,130,255,.35),0_0_95px_rgba(0,99,255,.22)] [animation:float_8s_ease-in-out_infinite]">
-              <div className="absolute inset-0 rounded-full bg-[repeating-linear-gradient(0deg,transparent_0_22px,rgba(44,164,255,.15)_23px,transparent_24px_43px),repeating-linear-gradient(90deg,transparent_0_22px,rgba(44,164,255,.13)_23px,transparent_24px_43px)] opacity-70 [mask-image:radial-gradient(ellipse,#000_35%,transparent_77%)]" />
-              <div className="absolute inset-[4%_-18%] rounded-[50%] border border-sky-300/40 [transform:rotate(-17deg)_scaleY(.5)]" />
-              <div className="absolute inset-y-0 left-[23%] right-[23%] rounded-[50%] border border-sky-300/40 [transform:rotate(18deg)]" />
-              <div className="absolute inset-y-0 left-[38%] right-[38%] rounded-[50%] border border-sky-300/30 [transform:rotate(-12deg)]" />
-              <svg viewBox="0 0 400 400" fill="none" aria-hidden="true" className="absolute inset-0 h-full w-full opacity-95 drop-shadow-[0_0_8px_rgba(0,174,255,.34)]">
-                <g fill="rgba(39,151,255,.38)" stroke="rgba(104,216,255,.68)" strokeWidth="1.3" strokeLinejoin="round">
-                  <path d="M68 92 L88 72 120 65 142 76 154 94 143 108 125 112 115 132 96 135 88 155 72 142 63 120 51 110Z" />
-                  <path d="M105 147 L128 154 139 178 131 203 117 230 108 261 96 279 88 256 94 225 84 200 87 173Z" />
-                  <path d="M176 86 L195 67 222 59 245 70 264 64 287 78 312 76 336 95 329 113 308 118 297 135 277 128 262 142 243 132 230 114 213 123 198 108 178 111Z" />
-                  <path d="M205 128 L226 122 246 141 253 166 241 193 228 220 211 239 199 217 193 193 180 170 184 146Z" />
-                  <path d="M275 173 L294 161 319 170 333 188 324 204 301 201 286 216 270 203Z" />
-                  <path d="M326 239 L347 234 363 250 353 266 331 267 320 252Z" />
-                  <path d="M153 56 L168 48 183 57 178 69 162 71Z" />
-                </g>
-                <g fill="rgba(255,205,116,.8)">
-                  {[[112,105],[129,99],[108,119],[219,92],[239,100],[253,114],[231,149],[246,162],[214,173],[292,102],[308,113],[277,121],[105,186],[116,208],[227,199],[216,211],[320,186]].map(([cx, cy], i) => <circle key={i} cx={cx} cy={cy} r="2" />)}
-                </g>
-              </svg>
-              {nodes.map(([x, y], i) => <span key={i} className="absolute z-[5] h-1 w-1 rounded-full bg-cyan-100 shadow-[0_0_7px_2px_#087dff,0_0_16px_#00dfff] animate-pulse" style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${i * 0.23}s` }} />)}
-              <div className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(128deg,rgba(255,255,255,.16),transparent_24%,transparent_67%,rgba(0,119,255,.22))]" />
-            </div>
+            {/* Interactive Tech Badge Pills */}
+            {technologies.map((tech) => {
+              const selected = activeCard === tech.name;
+              return (
+                <button
+                  key={tech.name}
+                  type="button"
+                  onMouseEnter={() => setActiveCard(tech.name)}
+                  onMouseLeave={() => setActiveCard("")}
+                  onClick={() => setActiveCard(tech.name)}
+                  className={`group absolute z-30 flex items-center gap-3 rounded-2xl border px-3.5 py-2.5 text-left transition-all duration-300 ${
+                    tech.className
+                  } ${
+                    selected
+                      ? "border-cyan-300 bg-[#0d2244] shadow-[0_0_24px_rgba(56,189,248,0.3)]"
+                      : "border-white/10 bg-[#09152b]/90 shadow-[0_12px_30px_rgba(0,0,0,0.5)] hover:border-cyan-400/50 hover:bg-[#0c1c38]"
+                  }`}
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#10294d] to-[#0a1830] text-xs font-bold text-cyan-300 border border-cyan-400/20 group-hover:border-cyan-400/60">
+                    {tech.symbol}
+                  </span>
+                  <div>
+                    <h3 className="text-xs font-bold text-white">{tech.name}</h3>
+                    <p className="text-[10px] text-slate-400">{tech.detail}</p>
+                  </div>
+                </button>
+              );
+            })}
 
-            {/* Orbit rings */}
-            <div className="pointer-events-none absolute left-1/2 top-[43%] z-[3] aspect-square w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/50 shadow-[0_0_15px_rgba(0,178,255,.2)] [transform:translate(-50%,-50%)_rotateX(69deg)_rotateZ(-18deg)]" />
-            <div className="pointer-events-none absolute left-1/2 top-[43%] z-[3] aspect-square w-[105%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-blue-400/40 [transform:translate(-50%,-50%)_rotateX(70deg)_rotateZ(27deg)] animate-spin [animation-duration:45s]" />
-            <div className="pointer-events-none absolute left-1/2 top-[43%] z-[3] aspect-square w-[75%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-500/50 [transform:translate(-50%,-50%)_rotateX(67deg)_rotateZ(70deg)]" />
-            <div className="pointer-events-none absolute left-1/2 top-[43%] z-[3] aspect-square w-[116%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-500/25 [transform:translate(-50%,-50%)_rotateX(74deg)_rotateZ(-45deg)]" />
-
-            {/* 3D Nexbyta N core */}
-            <div className="absolute left-1/2 top-[33%] z-20 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center [transform-style:preserve-3d] animate-bounce [animation-duration:5s]">
-              <div className="absolute -bottom-10 -left-[22%] -right-[22%] h-10 rounded-[50%] border border-cyan-300/60 bg-blue-500/20 shadow-[0_0_28px_rgba(0,174,255,.45)] [transform:perspective(250px)_rotateX(58deg)]" />
-              <div className="absolute inset-2 -z-10 rounded-[25%] bg-blue-950 [transform:translate(9px,8px)_translateZ(-10px)]" />
-              <div className="relative grid aspect-square w-[clamp(90px,12vw,150px)] place-items-center overflow-hidden rounded-[24%] border border-cyan-100/90 bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-800 shadow-[inset_0_2px_16px_rgba(255,255,255,.48),inset_-14px_-15px_30px_rgba(0,18,100,.42),10px_14px_0_-4px_rgba(14,55,170,.78),0_0_60px_rgba(0,140,255,.24)] [transform:rotateY(-12deg)_rotateX(7deg)] transition-transform duration-500 hover:rotate-0 hover:scale-105">
-                <div className="absolute inset-1.5 rounded-[22%] border border-white/25" />
-                <span className="relative z-10 pr-[.1em] text-[clamp(4.5rem,10vw,7rem)] font-black leading-none tracking-[-.1em] text-white drop-shadow-[0_4px_0_rgba(0,35,120,.45)]">N</span>
+            {/* 3D Isometric Code Editor Window */}
+            <div
+              className="animate-ide relative z-20 w-[420px] rounded-2xl border border-cyan-400/40 bg-[#091326]/95 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_40px_rgba(6,182,212,0.25)] backdrop-blur-xl"
+              style={{
+                transformStyle: "preserve-3d",
+              }}
+            >
+              {/* Window Header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
+                </div>
+                <div className="flex items-center gap-1.5 rounded-md bg-[#0f213d] px-2.5 py-1 text-[10px] font-medium text-cyan-300">
+                  <span>◆ index.html</span>
+                </div>
+                <span className="text-[10px] text-slate-400">D script.js</span>
               </div>
-              <span className="absolute top-[calc(100%+54px)] left-1/2 w-max -translate-x-1/2 text-[8px] font-extrabold tracking-[.17em] text-cyan-50 drop-shadow-[0_0_15px_rgba(0,207,255,.7)]">NEXBYTA TECHNOLOGIES</span>
+
+              {/* Window Content */}
+              <div className="mt-3 font-mono text-[11px] leading-relaxed">
+                <div className="text-slate-400">
+                  <span className="text-purple-400">function</span>{" "}
+                  <span className="text-blue-400">nexbyta</span>() &#123;
+                </div>
+                <div className="pl-4 text-slate-300">
+                  <span className="text-purple-400">const</span> skills = [
+                  <span className="text-amber-300">"Learn"</span>,{" "}
+                  <span className="text-amber-300">"Build"</span>,{" "}
+                  <span className="text-amber-300">"Grow"</span>];
+                </div>
+                <div className="pl-4 text-slate-300">
+                  skills.<span className="text-blue-300">forEach</span>((skill)
+                  =&gt; &#123;
+                </div>
+                <div className="pl-8 text-cyan-300">
+                  console.<span className="text-blue-300">log</span>(`Nexbyta:
+                  $&#123;skill&#125;`);
+                </div>
+                <div className="pl-4 text-slate-300">&#125;);</div>
+                <div className="text-slate-400">&#125;</div>
+
+                <div className="mt-2 text-slate-500">// Start your journey</div>
+                <div className="text-blue-300">nexbyta();</div>
+
+                {/* Simulated Terminal Status */}
+                <div className="mt-3 rounded-lg border border-cyan-500/20 bg-[#060c18] p-2.5 text-[10px]">
+                  <p className="text-slate-400">&gt; npm run dev</p>
+                  <p className="text-emerald-400">✔ Compiled successfully!</p>
+                  <p className="text-slate-300">
+                    ✔ Local:{" "}
+                    <span className="text-cyan-300">http://localhost:3000</span>
+                  </p>
+                  <p className="text-emerald-400">✔ Ready in 846ms</p>
+                </div>
+              </div>
+
+              {/* Bottom Right Glowing Tag on Window */}
+              <div className="absolute -bottom-3 -right-3 rounded-lg bg-blue-600 px-2 py-1 text-xs font-bold text-white shadow-[0_0_15px_#2563eb]">
+                &lt;/&gt;
+              </div>
             </div>
 
-            {/* Floating technology cards */}
-            {technologies.map((tech) => (
-              <button type="button" key={tech.name} onMouseEnter={() => setActiveCard(tech.name)} onMouseLeave={() => setActiveCard("")} onFocus={() => setActiveCard(tech.name)} onBlur={() => setActiveCard("")}
-                className={`absolute ${tech.position} z-30 flex min-h-[58px] w-[clamp(112px,16vw,180px)] max-w-[37%] items-center gap-2 overflow-hidden rounded-xl border px-2 py-2 text-left text-white shadow-[inset_0_1px_0_rgba(255,255,255,.11),0_14px_34px_rgba(0,0,0,.3),0_0_22px_rgba(0,112,255,.13)] backdrop-blur-xl transition duration-300 hover:brightness-125 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:gap-2.5 sm:px-2.5 ${activeCard === tech.name ? "border-cyan-300 bg-gradient-to-br from-blue-900/95 to-slate-950 shadow-[0_0_28px_rgba(0,193,255,.28)]" : "border-sky-300/60 bg-gradient-to-br from-blue-950/95 to-[#030f27]/95"}`}>
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-sky-400/20 bg-sky-400/15 text-lg font-extrabold text-cyan-200 sm:h-9 sm:w-9 sm:text-xl">{tech.symbol}</span>
-                <span className="relative flex min-w-0 flex-col gap-1"><strong className="text-[10px] leading-4 sm:text-xs">{tech.name}</strong><small className="text-[7px] leading-3 text-blue-200 sm:text-[9px]">{tech.detail}</small></span>
-              </button>
-            ))}
-
-            {/* Floating information panels */}
-            <div className="absolute left-0 top-[6%] z-[18] hidden items-center gap-2.5 rounded-xl border border-sky-300/25 bg-[#05142f]/90 p-3 shadow-xl backdrop-blur-xl sm:flex">
-              <Globe2 size={23} className="shrink-0 text-cyan-300" /><div className="flex flex-col gap-1"><small className="text-[8px] font-extrabold tracking-[.13em] text-cyan-300">GLOBAL VISION</small><strong className="text-[10px] font-semibold">Technology without limits</strong></div>
-            </div>
-            <div className="absolute bottom-[10%] left-0 z-[18] hidden items-center gap-2.5 rounded-xl border border-sky-300/25 bg-[#05142f]/90 p-3 shadow-xl backdrop-blur-xl sm:flex">
-              <Terminal size={22} className="shrink-0 text-cyan-300" /><div className="flex flex-col gap-1"><small className="text-[8px] font-extrabold tracking-[.13em] text-cyan-300">LEARN BY DOING</small><strong className="text-[10px] font-semibold">Turn ideas into projects</strong></div>
+            {/* Isometric JS Cube (Floating Bottom-Left of the IDE) */}
+            <div className="animate-badge-slow absolute bottom-[22%] left-[18%] z-30 flex h-14 w-14 items-center justify-center rounded-xl border border-cyan-400/40 bg-gradient-to-br from-blue-700 via-indigo-900 to-[#071329] font-mono text-xl font-black text-amber-300 shadow-[0_10px_25px_rgba(0,0,0,0.7),0_0_20px_rgba(37,99,235,0.5)]">
+              JS
             </div>
 
-           
-           
-            <Sparkles className="absolute right-[8%] top-[48%] z-20 text-cyan-200 drop-shadow-[0_0_12px_rgba(0,207,255,.8)]" size={22} />
+            {/* Glowing Icon Floating Pills */}
+            <div className="animate-badge-slow absolute left-[22%] top-[34%] z-20 flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/30 bg-[#0a1b38]/90 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+              &lt;/&gt;
+            </div>
+            <div className="animate-badge-slow absolute left-[23%] top-[48%] z-20 flex h-9 w-9 items-center justify-center rounded-xl border border-blue-400/30 bg-[#071329]/90 text-blue-400 shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+              &lt;&gt;
+            </div>
+
+            {/* Floating Wireframe Code Box (Top-Right of IDE) */}
+            <div className="absolute right-[12%] top-[18%] z-20 w-32 rounded-lg border border-cyan-400/30 bg-[#07152b]/80 p-2 shadow-[0_0_20px_rgba(6,182,212,0.15)] backdrop-blur-md">
+              <div className="h-1.5 w-16 rounded-full bg-cyan-400/70" />
+              <div className="mt-1.5 h-1 w-24 rounded-full bg-cyan-400/30" />
+              <div className="mt-1 h-1 w-20 rounded-full bg-cyan-400/30" />
+            </div>
+
+            {/* Floating Wireframe Code Box (Bottom-Right of IDE) */}
+            <div className="absolute right-[8%] bottom-[24%] z-20 w-36 rounded-lg border border-cyan-400/30 bg-[#07152b]/80 p-2.5 shadow-[0_0_20px_rgba(6,182,212,0.15)] backdrop-blur-md">
+              <div className="h-1.5 w-14 rounded-full bg-cyan-400/70" />
+              <div className="mt-1.5 h-1 w-28 rounded-full bg-cyan-400/30" />
+              <div className="mt-1 h-1 w-20 rounded-full bg-cyan-400/30" />
+              <div className="mt-1 h-1 w-24 rounded-full bg-cyan-400/30" />
+            </div>
+
+            {/* Glowing Accent Brackets */}
+            <span className="absolute right-[12%] top-[46%] text-xl font-bold text-cyan-400/60 drop-shadow-[0_0_10px_#22d3ee]">
+              &#123;&#125;
+            </span>
           </div>
         </div>
       </section>
+
+      {/* ================= FLOATING WHATSAPP CTA ================= */}
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact us on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-[0_10px_25px_rgba(37,211,102,0.4)] transition hover:scale-105 hover:brightness-105"
+      >
+        <MessageCircle className="h-5 w-5 fill-current" />
+        <span>WhatsApp</span>
+      </a>
     </main>
   );
 }

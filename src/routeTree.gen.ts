@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InternshipsRouteImport } from './routes/Internships'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -24,6 +25,11 @@ import { Route as CoursesSlugRouteImport } from './routes/courses.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternshipsRoute = InternshipsRouteImport.update({
+  id: '/Internships',
+  path: '/Internships',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -78,6 +84,7 @@ const CoursesSlugRoute = CoursesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/Internships': typeof InternshipsRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/career': typeof CareerRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/Internships': typeof InternshipsRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/career': typeof CareerRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/Internships': typeof InternshipsRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/career': typeof CareerRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/Internships'
     | '/about'
     | '/auth'
     | '/career'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/Internships'
     | '/about'
     | '/auth'
     | '/career'
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/Internships'
     | '/about'
     | '/auth'
     | '/career'
@@ -157,6 +169,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  InternshipsRoute: typeof InternshipsRoute
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   CareerRoute: typeof CareerRoute
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Internships': {
+      id: '/Internships'
+      path: '/Internships'
+      fullPath: '/Internships'
+      preLoaderRoute: typeof InternshipsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -263,6 +283,7 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  InternshipsRoute: InternshipsRoute,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   CareerRoute: CareerRoute,
